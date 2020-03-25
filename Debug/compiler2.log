@@ -1,15 +1,13 @@
-﻿Build started 25/03/2020 01:44:37 م.
-     1>Project "C:\Users\Diana\documents\visual studio 2012\Projects\compiler2\compiler2\compiler2.vcxproj" on node 2 (Build target(s)).
+﻿Build started 25/03/2020 11:25:49 م.
+     1>Project "C:\Users\Diana\documents\visual studio 2012\Projects\compiler2\compiler2\compiler2.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt Source.c
          Source.c
-     1>c:\users\diana\documents\visual studio 2012\projects\compiler2\compiler2\source.c(84): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\diana\documents\visual studio 2012\projects\compiler2\compiler2\source.c(86): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(110) : see declaration of 'strcpy'
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Diana\documents\visual studio 2012\Projects\compiler2\Debug\compiler2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Diana\documents\visual studio 2012\Projects\compiler2\Debug\compiler2.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Diana\documents\visual studio 2012\Projects\compiler2\Debug\compiler2.lib" /MACHINE:X86 Debug\Source.obj
-         compiler2.vcxproj -> C:\Users\Diana\documents\visual studio 2012\Projects\compiler2\Debug\compiler2.exe
-     1>Done Building Project "C:\Users\Diana\documents\visual studio 2012\Projects\compiler2\compiler2\compiler2.vcxproj" (Build target(s)).
+     1>c:\users\diana\documents\visual studio 2012\projects\compiler2\compiler2\source.c(306): error C2143: syntax error : missing ';' before 'type'
+     1>Done Building Project "C:\Users\Diana\documents\visual studio 2012\Projects\compiler2\compiler2\compiler2.vcxproj" (Rebuild target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.04
+Time Elapsed 00:00:00.67

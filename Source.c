@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include<string.h>
+#include<conio.h>
+
 
 void error(char *m);
 void emit(int t,int tval);
@@ -40,7 +42,7 @@ int lineno;
 
 
 
-
+FILE *fs, *ft ;
 
 
 
@@ -127,8 +129,11 @@ void parse() /* parses and translates expression list */
 	 lookahead = lexan();
 	while (lookahead != DONE) {
         expr(); match(';');
+
+		
 	} 
-	printf("]");
+	
+	
 	
 }
 
@@ -195,36 +200,40 @@ int lexan() /* lexical analyzer */
 {
     int t;
     while (1) {
-        t = getchar();
-        if (t == ' ' || t == '\t')
+        t = fgetc(fs);
+        if (t == ' ' || t == '\t') 
             ; /* strip out white space */
         else if (t == '\n')
             lineno = lineno + 1;
         else if (isdigit(t)) { /* t is a digit */
-            ungetc(t, stdin);
-            scanf_s("%d", &tokenval);
+            ungetc(t, fs);
+            fscanf_s(fs,"%d", &tokenval);
             return NUM;
         }
         else if (isalpha(t)) { /* t is a letter */
             int p, b = 0;
             while (isalnum(t)) { /* t is alphanumeric */
                 lexbuf[b] = t;
-                t = getchar();
+                t = fgetc(fs);
                 b = b + 1;
                 if (b >= BSIZE)
                     error("compiler error");
             }
             lexbuf[b] = EOS;
             if (t != EOF)
-                ungetc(t, stdin);
+                ungetc(t, fs);
             p = lookup(lexbuf);
             if (p == 0)
                 p = insert(lexbuf, ID);
             tokenval = p;
             return symtable[p].token;
         }
-        else if (t == EOF)
-            return DONE;
+		else if (t == EOF){
+			printf("word");
+			return DONE;
+			
+		}
+		
 
         else {
             tokenval = NONE;
@@ -264,31 +273,56 @@ void emit(int t,int tval) /* generates output */
 {
     switch(t) {
     case '+': case '-': case '*': case '/':
-        printf("%c\n", t); break;
+        fprintf(ft ,"%c", t); break;
     case DIV:
-        printf("DIV\n"); break;
+        fprintf(ft,"DIV"); break;
 	case PROGRAM:
-        printf("program\n"); break;
+        fprintf(ft,"program"); break;
 	case INF:
-        printf("inf\n"); break;
+        fprintf(ft,"inf"); break;
 	case POS:
-        printf("pos\n"); break;
+        fprintf(ft,"pos"); break;
     case MOD:
-        printf ("MOD\n"); break;
+        fprintf (ft,"MOD"); break;
     case NUM:
-        printf("%d\n", tval); break;
+        fprintf(ft,"%d", tval); break;
     case ID:
-        printf("%s\n", symtable[tval].lexptr); break;
+        fprintf(ft,"%s", symtable[tval].lexptr); break;
+
     default:
-        printf("token %d,tokenval %d\n", t, tval);
+        fprintf(ft,"token %d,tokenval %d", t, tval);
     }
 }
 
 ////////////////////////////////
-main()
-{
-    init();
-    parse();
-    exit(0); /* successful termination */
-}
+int  main(int __argc,char *__argv[]){
+	if(__argc<3){
+		printf("error");
+		printf("usage:prog arg1 arg2");
+	}
+	
 
+
+            char ch ;
+            fs = fopen ( __argv[1], "r") ;
+            if (fs == NULL)
+
+                {    puts ("Cannot open source file") ;
+                     exit(0) ;      
+                }
+
+            ft = fopen ( __argv[2],"w") ; 
+            if ( ft == NULL )        
+                { puts ("Cannot open target file") ; 
+                  exit(0) ;                      
+			    }       
+
+
+
+      init();
+      parse();
+      fclose(ft);
+      fclose(fs);
+  
+	   return 0;
+}
