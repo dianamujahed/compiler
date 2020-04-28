@@ -1,4 +1,4 @@
-﻿Build started 29/04/2020 01:02:42 ص.
+﻿Build started 29/04/2020 01:09:20 ص.
      1>Project "C:\Users\Diana\Documents\Visual Studio 2012\Projects\compiler2\compiler2\compiler2.vcxproj" on node 2 (Build target(s)).
      1>Link:
          compiler2.vcxproj -> C:\Users\Diana\Documents\Visual Studio 2012\Projects\compiler2\Debug\compiler2.exe
@@ -6,4 +6,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.08
+Time Elapsed 00:00:00.09

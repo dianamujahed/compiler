@@ -1,0 +1,3 @@
+program(inf,pos)[ 
+hello 5 + ; 
+x 
