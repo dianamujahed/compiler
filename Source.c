@@ -98,7 +98,7 @@ void parse() /* parses and translates expression list */
 
 	 lookahead = lexan();
 	if (lookahead=='(')
-		printf("(");
+		 fprintf(ft,"(");
 	else error("syntax error");
 
 	 lookahead = lexan();
@@ -108,7 +108,7 @@ void parse() /* parses and translates expression list */
 
 	 lookahead = lexan();
 	if (lookahead==',')
-		printf(",");
+		 fprintf(ft,",");
 	else error("syntax error");
 
 	 lookahead = lexan();
@@ -118,20 +118,21 @@ void parse() /* parses and translates expression list */
 
 	 lookahead = lexan();
 	if (lookahead==')')
-		printf(")");
+		 fprintf(ft,")");
 	else error("syntax error");
 
 	 lookahead = lexan();
 	if (lookahead=='[')
-		printf("[");
+		 fprintf(ft,"[ \n");
 	else error("syntax error");
 
 	 lookahead = lexan();
 	while (lookahead != DONE) {
-        expr(); match(';');
-
-		
+        expr(); match(';');fprintf(ft,"; \n");
+	
 	} 
+
+	fprintf(ft,"] \n");
 	
 	
 	
@@ -188,6 +189,7 @@ void match(int t)
 {
     if (lookahead == t)
         lookahead = lexan();
+	
     else error("syntax error");
 }
 
@@ -273,9 +275,9 @@ void emit(int t,int tval) /* generates output */
 {
     switch(t) {
     case '+': case '-': case '*': case '/':
-        fprintf(ft ,"%c", t); break;
+        fprintf(ft ,"%c ", t); break;
     case DIV:
-        fprintf(ft,"DIV"); break;
+        fprintf(ft,"DIV "); break;
 	case PROGRAM:
         fprintf(ft,"program"); break;
 	case INF:
@@ -283,39 +285,45 @@ void emit(int t,int tval) /* generates output */
 	case POS:
         fprintf(ft,"pos"); break;
     case MOD:
-        fprintf (ft,"MOD"); break;
+        fprintf (ft,"MOD "); break;
     case NUM:
-        fprintf(ft,"%d", tval); break;
+        fprintf(ft,"%d ", tval); break;
     case ID:
-        fprintf(ft,"%s", symtable[tval].lexptr); break;
+        fprintf(ft,"%s ", symtable[tval].lexptr); break;
 
     default:
-        fprintf(ft,"token %d,tokenval %d", t, tval);
+        fprintf(ft,"token %d,tokenval %d ", t, tval);
     }
 }
 
 ////////////////////////////////
 int  main(int __argc,char *__argv[]){
-	if(__argc<3){
-		printf("error");
-		printf("usage:prog arg1 arg2");
+	char * inputfile="fs.txt";
+		char * outputfile="ft.txt";
+
+	if(__argc==3){
+      inputfile=__argv[1];
+	  outputfile=__argv[2];
+
+
 	}
 	
 
 
-            char ch ;
-            fs = fopen ( __argv[1], "r") ;
-            if (fs == NULL)
-
-                {    puts ("Cannot open source file") ;
-                     exit(0) ;      
+		fs = fopen (inputfile, "r" ) ;
+            if ( fs == NULL )
+                {    puts ( "Cannot open source file" ) ;
+			system("pause");
+                exit(0 ) ;      
                 }
 
-            ft = fopen ( __argv[2],"w") ; 
+			ft = fopen ( outputfile,"w" ) ; 
             if ( ft == NULL )        
-                { puts ("Cannot open target file") ; 
-                  exit(0) ;                      
-			    }       
+                {           
+					puts ( "Cannot open target file" ) ; 
+					system("pause");
+                   exit(0 ) ;               
+			}       
 
 
 
@@ -323,6 +331,7 @@ int  main(int __argc,char *__argv[]){
       parse();
       fclose(ft);
       fclose(fs);
-  
-	   return 0;
+   
+	system("pause");
+	return 0;
 }

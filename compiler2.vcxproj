@@ -67,6 +67,10 @@
   <ItemGroup>
     <ClInclude Include="global.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="fs.txt" />
+    <Text Include="ft.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
